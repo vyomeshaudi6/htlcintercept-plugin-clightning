@@ -151,6 +151,16 @@ func OnHtlcAccepted(event *glightning.HtlcAcceptedEvent) (*glightning.HtlcAccept
 
 	payload, err := sphinx.NewHopPayload(nil, b.Bytes())
 	log.Printf("sphinx.NewHopPayload(): %v", err)
+
+	/*
+		_, _, destination, _, _, _, _, err := paymentInfo([]byte(event.Htlc.PaymentHash))
+		if err != nil {
+			log.Printf("paymentInfo(%x) error: %v", event.Htlc.PaymentHash, err)
+		}
+		log.Printf("\ndestination:%x\n\n\n",
+			destination)
+	*/
+
 	/*
 		pkBytes, err := hex.DecodeString("0215df18e0653f1734bf1319bee09512edb93da3808aa05e0ae203b51096a9dc47")
 		pubKey, err := btcec.ParsePubKey(pkBytes)
@@ -178,12 +188,3 @@ func OnHtlcAccepted(event *glightning.HtlcAcceptedEvent) (*glightning.HtlcAccept
 	//pl := tlv.Marshal(event.Onion.Payload)
 	//return event.ContinueWithPayload(pl), nil
 }
-
-/*
-	_, _, destination, _, _, _, _, err := paymentInfo([]byte(event.Htlc.PaymentHash))
-	if err != nil {
-		log.Printf("paymentInfo(%x) error: %v", event.Htlc.PaymentHash, err)
-	}
-	log.Printf("\ndestination:%x\n\n\n",
-		destination)
-*/
